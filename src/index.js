@@ -11,14 +11,6 @@ app.use(passport.initialize());
 
 var user = {user:"123", password:"321"};
 
-// Access the parse results as request.body
-app.post('/', function(request, response){
-    
-    console.log(request.body.name);
-    response.send("dicktum")
-    
-});
-
 passport.use(new Strategy({ qop: 'auth' },
   function(username, done) {
     return done(null,user.user,user.password)
