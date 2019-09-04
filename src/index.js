@@ -9,6 +9,7 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(passport.initialize());
 
+var user = {user:"123", password:"321"};
 
 // Access the parse results as request.body
 app.post('/', function(request, response){
@@ -20,7 +21,7 @@ app.post('/', function(request, response){
 
 passport.use(new Strategy({ qop: 'auth' },
   function(username, done) {
-    return done(null,"123","124")
+    return done(null,user.user,user.password)
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
